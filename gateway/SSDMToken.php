@@ -51,7 +51,7 @@ class SSDMToken
 
     public static function create_token($payload, $secret_key)
     {
-        $header = SSDMToken::base64_url_encode(json_encode(['alg' => 'HS256', 'typ' => 'JWT']));
+        $header = SSDMToken::base64_url_encode(json_encode(['alg' => 'sha256', 'typ' => 'JWT']));
         $payload = SSDMToken::base64_url_encode(json_encode($payload));
         $signature = hash_hmac('sha256', $header . '.' . $payload, $secret_key, false);
         $signature = SSDMToken::base64_url_encode($signature);
@@ -68,8 +68,9 @@ class SSDMToken
         $header = $explode[0];
         $payload = $explode[1];
         $signature = $explode[2];
+        $header_object = SSDMToken::decode_header($token);
         $signature = SSDMToken::base64_url_decode($signature);
-        $expected_signature = hash_hmac('sha256', $header . '.' . $payload, $secret_key, false);
+        $expected_signature = hash_hmac($header_object->alg, $header . '.' . $payload, $secret_key, false);
         return hash_equals($signature, $expected_signature);
     }
     
