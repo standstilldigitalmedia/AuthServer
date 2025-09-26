@@ -14,3 +14,10 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+*.import
+*.res
+*.uid
+*Zone.Identifier
+db-log
+.vs-code/

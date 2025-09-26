@@ -1,0 +1,125 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdvorg2gdwl2r"]
+
+[ext_resource type="Script" uid="uid://bq2yib3k1hgk3" path="res://client/login/login.gd" id="1_7mur6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eomiu"]
+bg_color = Color(0.941176, 1, 0.941176, 0.392157)
+shadow_color = Color(0.941176, 1, 0.941176, 0.196078)
+shadow_size = 3
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qw7e8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t7jy4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y41sk"]
+
+[node name="Home" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_eomiu")
+script = ExtResource("1_7mur6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qw7e8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "LOGIN"
+horizontal_alignment = 1
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/v_separation = 20
+columns = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Username:"
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Username"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Password:"
+
+[node name="LineEdit2" type="LineEdit" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Password"
+secret = true
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Remember Me"
+
+[node name="CheckBox" type="CheckBox" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_t7jy4")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_y41sk")
+text = "Forgot Password"
+
+[node name="ErrorLabel" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+text = "This is error text"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Login"
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Register New Account"
