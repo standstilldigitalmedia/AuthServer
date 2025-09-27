@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cgttcdjpv0xry"]
 
-[ext_resource type="Script" uid="uid://ck0ncncyxsbjr" path="res://client/register_scene/register.gd" id="1_eomiu"]
+[ext_resource type="Script" uid="uid://ck0ncncyxsbjr" path="res://client/register/register.gd" id="1_eomiu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eomiu"]
 bg_color = Color(0.941176, 1, 0.941176, 0.392157)

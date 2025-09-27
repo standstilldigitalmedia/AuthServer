@@ -65,7 +65,6 @@ func _on_request_completed(result, response_code, headers, body):
 	if result == HTTPRequest.RESULT_SUCCESS and response_code == 200 and headers != null:
 		if body.is_empty():
 			print("EMPTY!")
-		print(body.get_string_from_utf8())
 		var response_object: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 		if response_object.has("success") and response_object.has("message"):
 			if response_object.success:
