@@ -36,7 +36,6 @@ class SSDMRequestBase
 
     protected function set_incoming_request($incoming_request)
     {
-        
         $this->set_client_id($incoming_request->client_id);
     }
 
@@ -56,9 +55,8 @@ class SSDMRequestBase
         return true;
     }
 
-    public function send_curl_request($url)
+    public function send_curl_request($url, $token)
     {
-        $token = SSDMToken::create_token($this, $this->secret_key);
         $data['token'] = $token;
         $curl = curl_init($url);
         curl_setopt($curl, CURLOPT_POST, true); // Specify POST method

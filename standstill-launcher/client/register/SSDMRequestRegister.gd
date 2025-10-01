@@ -1,4 +1,4 @@
-class_name SSDMRegisterRequest
+class_name SSDMRequestRegister
 extends SSDMRequestBase
 
 var user_name := ""

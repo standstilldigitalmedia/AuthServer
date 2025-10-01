@@ -117,6 +117,7 @@ class SSDMRequestRegister extends SSDMRequestBase
 
     public function set_register_request($incoming_request)
     {
+        $this->set_incoming_request($incoming_request);
         $this->set_user_name($incoming_request->user_name);
         $this->set_display_name($incoming_request->display_name);
         $this->set_email($incoming_request->email);
@@ -125,6 +126,10 @@ class SSDMRequestRegister extends SSDMRequestBase
 
     public function validate_register_request($incoming_request)
     {
+        if(!$this->validate_incoming_request($incoming_request))
+        {
+            return false;
+        }
         if(!property_exists($incoming_request, 'user_name'))
         {
             $this->set_message('No username');
@@ -163,7 +168,8 @@ class SSDMRequestRegister extends SSDMRequestBase
         $response_register = new SSDMResponseBase();
         if($this->success)
         {
-            $response = $this->send_curl_request(AUTH_REGISTER_URL);
+            $token = SSDMToken::create_token($this, $this->secret_key);
+            $response = $this->send_curl_request(AUTH_REGISTER_URL, $token);
             if(!$response)
             {
                 $response_register->set_message("Communication error. Please try again.");
@@ -182,17 +188,17 @@ class SSDMRequestRegister extends SSDMRequestBase
             if(!$this->send_activation_email($this, $response->message))
             {
                 $response_register->set_message('Unable to send activation email');
+                $response_register->success = true;
+                $response_register->create_expire_token(10 * MINUTE, $this->secret_key);
                 return json_encode($response_register);
             }
             $response_register->success = true;
-            $response_register->set_message("tis true");
+            $response_register->create_expire_token(10 * MINUTE, $this->secret_key);
         }
         else
         {
-            $response_register->set_message("no suiccess");
             $response_register->set_message($this->message);
         }
-        $response_register->set_message("end");
         return json_encode($response_register);
     }
 }

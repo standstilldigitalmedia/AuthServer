@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://brqub82ih38y8"]
+[gd_scene load_steps=3 format=3 uid="uid://c6vvmkg80p0g1"]
 
-[ext_resource type="Script" uid="uid://diaweih7hohq" path="res://client/activate/activate.gd" id="1_7ub5c"]
+[ext_resource type="Script" uid="uid://c560pj477lw7t" path="res://client/login/login.gd" id="1_7mur6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eomiu"]
 bg_color = Color(0.941176, 1, 0.941176, 0.392157)
@@ -8,14 +8,14 @@ shadow_color = Color(0.941176, 1, 0.941176, 0.196078)
 shadow_size = 3
 shadow_offset = Vector2(2, 2)
 
-[node name="Activate" type="PanelContainer"]
+[node name="Login" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_eomiu")
-script = ExtResource("1_7ub5c")
+script = ExtResource("1_7mur6")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -31,16 +31,8 @@ theme_override_constants/separation = 20
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Activate Account"
+text = "Login"
 horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(1, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 20
-text = "Please check the email address you provided for an email with a 16 character code. Enter the code into the box below and click Activate to activate your account. Please remember to check your spam folder if you do see an email from Standstill Digital Media."
-horizontal_alignment = 1
-autowrap_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -51,13 +43,24 @@ columns = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 20
-text = "Activation Code:"
+text = "User Name:"
 horizontal_alignment = 2
 
-[node name="ActivationCodeLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/GridContainer"]
+[node name="UserNameLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-placeholder_text = "Activation Code"
+placeholder_text = "User Name"
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Display Name:"
+horizontal_alignment = 2
+
+[node name="DisplayNameLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Display Name"
 
 [node name="ErrorLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(10, 0)
@@ -74,15 +77,14 @@ layout_mode = 2
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="ActivateButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+[node name="LoginButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-text = "Activate"
+text = "Login"
 
-[node name="CancelButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
-custom_minimum_size = Vector2(150, 0)
+[node name="RegisterButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
-text = "Cancel"
+text = "Register New Account"
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/ActivateButton" to="." method="_on_activate_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/CancelButton" to="." method="_on_cancel_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/RegisterButton" to="." method="_on_register_button_pressed"]

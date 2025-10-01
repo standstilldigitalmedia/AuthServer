@@ -6,16 +6,7 @@ extends SSDMPanelBase
 @onready var email_line_edit: LineEdit = $MarginContainer/VBoxContainer/GridContainer/EmailLineEdit
 @onready var password_line_edit: LineEdit = $MarginContainer/VBoxContainer/GridContainer/PasswordLineEdit
 @onready var re_password_line_edit: LineEdit = $MarginContainer/VBoxContainer/GridContainer/RePasswordLineEdit
-@onready var error_label: Label = $MarginContainer/VBoxContainer/ErrorLabel
 @onready var register_button: Button = $MarginContainer/VBoxContainer/CenterContainer/HBoxContainer/RegisterButton
-
-
-func show_error(error: String) -> void:
-	if error == "":
-		error_label.hide()
-		return
-	error_label.text = error
-	error_label.show()
 	
 	
 func enable_panel(enable: bool) -> void:
@@ -28,18 +19,14 @@ func enable_panel(enable: bool) -> void:
 	
 	
 func _ready() -> void:
-	error_label.hide()
+	error_label = $MarginContainer/VBoxContainer/ErrorLabel
+	show_error("")
 	
-	
-func _on_login_button_pressed() -> void:
-	pass
-
 
 func _on_register_button_pressed() -> void:
 	enable_panel(false)
-	var register_request = SSDMRegisterRequest.new()
+	var register_request = SSDMRequestRegister.new()
 	register_request.set_client_id(OS.get_unique_id())
-	register_request.set_request_type("register")
 	register_request.set_user_name(user_name_line_edit.text)
 	register_request.set_display_name(display_name_line_edit.text)
 	register_request.set_email(email_line_edit.text)
@@ -68,7 +55,10 @@ func _on_request_completed(result, response_code, headers, body):
 		var response_object: Dictionary = JSON.parse_string(body.get_string_from_utf8())
 		if response_object.has("success") and response_object.has("message"):
 			if response_object.success:
-				show_error("Your account has been registered successfully. Please check your email for account activation instructions.")
+				if response_object.has("token"):
+					account_registered.emit(response_object["token"])
+				else:
+					show_error("There was a problem with the server. Please try again.")
 				return
 			else:
 				show_error(response_object.message)

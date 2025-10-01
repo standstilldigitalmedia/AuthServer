@@ -3,6 +3,7 @@ session_start();
 
 const GATEWAY_ACTIVATE_URL = "http://localhost/gateway/activate.php";
 const AUTH_REGISTER_URL = "http://localhost/authentication/register.php";
+const AUTH_ACTIVATE_URL = 'http://localhost/authentication/activate.php';
 const MAX_NAME_LENGTH = 30;
 const MAX_EMAIL_LENGTH = 255;
 const MIN_NAME_LENGTH = 6;

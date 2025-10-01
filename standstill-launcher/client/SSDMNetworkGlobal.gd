@@ -2,6 +2,7 @@ class_name SSDMNetworkGlobal
 extends Node
 
 const REGISTER_URL := "http://localhost/gateway/register.php"
+const ACTIVATE_URL := "http://localhost/gateway/activate.php"
 const MAX_CLIENT_ID_LENGTH := 255
 const MAX_NAME_LENGTH := 30
 const MIN_NAME_LENGTH := 8

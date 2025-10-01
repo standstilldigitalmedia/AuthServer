@@ -2,20 +2,12 @@ class_name SSDMRequestBase
 extends RefCounted
 
 var error := ""
-var request_type := ""
 var client_id := ""
 
 
 func set_error(value: String) -> void:
 	if error == "":
 		error = value
-		
-		
-func set_request_type(value: String) -> void:
-	if value != "register" and value != "login":
-		set_error("Invalid request type.")
-		return
-	request_type = value
 		
 				
 func set_client_id(value: String):
@@ -63,18 +55,13 @@ func contains_special_characters(text: String) -> bool:
 
 func serialize_base() -> Dictionary:
 	var return_dictionary: Dictionary = {}
-	return_dictionary["request_type"] = request_type
 	return_dictionary["client_id"] = client_id
 	return return_dictionary
 	
 	
 func deserialize_base(input_string: String) -> void:
 	var input_object = JSON.parse_string(input_string)
-	if !input_object.has(request_type):
-		set_error("Request type must be provided.")
-		return
-	if !input_object.has(client_id):
+	if !input_object.has("client_id"):
 		set_error("Client ID must be provided.")
 		return
-	set_request_type(input_object.request_type)
 	set_client_id(input_object.client_id)
